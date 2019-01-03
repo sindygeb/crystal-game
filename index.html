@@ -7,9 +7,63 @@
     <link type="text/css" rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
     <title>Crystal Game!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <h1>Crystals Collector</h1>
+    <h1>Crystal Collector</h1>
+    <div class="rules">
+        <h2>
+            Rules:
+        </h2>
+        <ol>
+            <li>A randomly generated number will appear as your target number.</li>
+            <li>Click on the crystals to add to your score below.</li>
+            <li>BE CAREFUL! You don't want to go over the target number, or YOU LOSE!</li>
+            <li>Match the number perfectly without going over and YOU WIN!</li>
+        </ol>
+    </div>
     
+    <div class="crystals">
+        <input type="image" src="assets/images/crystalBlue.jpg" name="blue" class="imgButton" id="blueCrystal" value="2">
+        <input type="image" src="assets/images/crystalGreen.jpg" name="green" class="imgButton" id="greenCrystal" value="7">
+        <input type="image" src="assets/images/crystalPink.jpg" name="pink" class="imgButton" id="pinkCrysal" value="11">
+        <input type="image" src="assets/images/crystalPurple.jpg" name="purple" class="imgButton" id="purpleCrystal" value="1">
+    </div>
+    <div class="compNum">
+        Target Number:<span id="targetNum"> 0</span>
+    </div>
+    <div class="myNum">
+        Your Number:<span id="totalNumber"> 0</span>
+    </div>
+
+    <script type="text/javascript">
+    
+    $(document).ready(function() {
+
+    //create function to start game with random number
+    function initializeGame(){
+        var randomNum = Math.floor((Math.random() * 120) + 1);
+        $("#targetNum").text(" " + randomNum);
+       console.log(randomNum);
+
+    }
+    
+   $(".imgButton").on("click", function() {
+       var newNum = $(this).attr("value");
+       console.log(newNum);
+   })
+
+
+    initializeGame();
+
+    });
+    
+    
+    
+    
+    
+    
+    
+    </script>
 </body>
 </html>
