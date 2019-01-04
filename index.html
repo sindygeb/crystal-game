@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link type="text/css" rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <title>Crystal Game!</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <h1>Crystal Collector</h1>
+    <h1>CRYSTAL COLLECTOR</h1>
     <div class="rules">
         <h2>
-            Rules:
+           - RULES -
         </h2>
-        <ol>
+        <ul>
             <li>A randomly generated number will appear as your target number.</li>
             <li>Click on the crystals to add to your score below.</li>
             <li>BE CAREFUL! You don't want to go over the target number, or YOU LOSE!</li>
             <li>Match the number perfectly without going over and YOU WIN!</li>
-        </ol>
+        </ul>
     </div>
     
     <div class="crystals">
@@ -30,31 +30,80 @@
         <input type="image" src="assets/images/crystalPurple.jpg" name="purple" class="imgButton" id="purpleCrystal" value="1">
     </div>
     <div class="compNum">
-        Target Number:<span id="targetNum"> 0</span>
+        TARGET NUMBER:<span id="targetNum"> 0</span>
     </div>
     <div class="myNum">
-        Your Number:<span id="totalNumber"> 0</span>
+        YOUR NUMBER:<span id="totalNumber"> 0</span>
     </div>
+    <div class="winner">
+        TOTAL WINS:<span id="totalWins"></span>
+    </div>
+    <div class="loss">
+        TOTAL LOSSES:<span id="totalLosses"></span>
+    </div>
+
 
     <script type="text/javascript">
     
     $(document).ready(function() {
 
-    //create function to start game with random number
+    var wins = 0;
+    var losses = 0;
+    var oldTotal = 0;
+
+    //create function to start game with random number and write it to the Target Num on the HTML doc
     function initializeGame(){
-        var randomNum = Math.floor((Math.random() * 120) + 1);
+        var randomNum = Math.floor((Math.random() * (120-19) + 19));
         $("#targetNum").text(" " + randomNum);
        console.log(randomNum);
 
     }
+    //convert the values into numbers
+    //add the numbers
+    //write the numbers onto the HTML file
+    //reset the game
+     
+   var newTotal = $("#totalNumber").text("0");
+
+    //If the blue crystal is clicked, take the value of that crystal
+    $("#blueCrystal").on("click", function() {
+       var blueValue = $(this).attr("value");
+       //turn the value into an integer
+       parseInt(blueValue);
+       console.log(blueValue);
+    });
+
+    $("#greenCrystal").on("click", function() {
+        var greenValue = $(this).attr("value");
+        parseInt(greenValue);
+        console.log(greenValue);
+    });
     
-   $(".imgButton").on("click", function() {
-       var newNum = $(this).attr("value");
-       console.log(newNum);
-   })
+    $("#pinkCrystal").on("click", function() {
+        var pinkValue = $(this).attr("value");
+        parseInt(pinkValue);
+        console.log(pinkValue);
+    });
 
-
+    $("purpleCrystal").on("click", function() {
+        var purpleValue = $(this).attr("value");
+        parseInt(purpleValue);
+        console.log(purpleValue);
+    });
     initializeGame();
+
+    //win condition (finish writing IF statements), Run the function
+    function winGame() {
+        alert("You Win!");
+        wins ++;
+        $("#totalWins").text(wins);
+    }
+    //lose condition (finish writing IF statements), Run the function
+    function LoseGame() {
+        alert("You Went Over! You Lose!");
+        losses ++;
+        $("#totalLosses").text(losses);
+    }
 
     });
     
