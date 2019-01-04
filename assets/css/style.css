@@ -42,10 +42,7 @@ h2 {
 }
 .compNum {
     color: #ffffff;
-    padding: 40px;
     margin-bottom: 30px;
-    width: 385px;
-    height: auto;
     float: left;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
@@ -54,9 +51,6 @@ h2 {
 }
 .myNum {
     color: #ffffff;
-    padding: 40px;
-    width: 385px;
-    height: auto;
     float: right;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
@@ -64,21 +58,17 @@ h2 {
 }
 .winner {
     color: #ffffff;
-    padding: 40px;
-    width: 385px;
-    height: auto;
-    float: right;
+    float: left;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 10px;
+    margin-bottom: 40px;
 }
 .loss {
     color: #ffffff;
-    padding: 40px;
-    width: 385px;
-    height: auto;
     float: right;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 10px;
+    margin-bottom: 40px;
 }

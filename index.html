@@ -24,10 +24,10 @@
     </div>
     
     <div class="crystals">
-        <input type="image" src="assets/images/crystalBlue.jpg" name="blue" class="imgButton" id="blueCrystal" value="2">
-        <input type="image" src="assets/images/crystalGreen.jpg" name="green" class="imgButton" id="greenCrystal" value="7">
-        <input type="image" src="assets/images/crystalPink.jpg" name="pink" class="imgButton" id="pinkCrysal" value="11">
-        <input type="image" src="assets/images/crystalPurple.jpg" name="purple" class="imgButton" id="purpleCrystal" value="1">
+        <input type="image" src="assets/images/crystalBlue.jpg" name="blue" class="imgButton" id="blueCrystal" value="">
+        <input type="image" src="assets/images/crystalGreen.jpg" name="green" class="imgButton" id="greenCrystal" value="">
+        <input type="image" src="assets/images/crystalPink.jpg" name="pink" class="imgButton" id="pinkCrystal" value="">
+        <input type="image" src="assets/images/crystalPurple.jpg" name="purple" class="imgButton" id="purpleCrystal" value="">
     </div>
     <div class="compNum">
         TARGET NUMBER:<span id="targetNum"> 0</span>
@@ -35,6 +35,7 @@
     <div class="myNum">
         YOUR NUMBER:<span id="totalNumber"> 0</span>
     </div>
+    <br><br><br>
     <div class="winner">
         TOTAL WINS:<span id="totalWins"></span>
     </div>
@@ -42,76 +43,78 @@
         TOTAL LOSSES:<span id="totalLosses"></span>
     </div>
 
-
     <script type="text/javascript">
     
     $(document).ready(function() {
 
-    var wins = 0;
-    var losses = 0;
-    var oldTotal = 0;
+        //create variables for wins, losses, total score (so far).
+        var randomNum;
+        var wins = 0;
+        var losses = 0;
+        var scoreTotal = 0;
+        //create variables for each crystal (since they will randomly generate a new value)
+        var blueCrystal = 0;
 
-    //create function to start game with random number and write it to the Target Num on the HTML doc
-    function initializeGame(){
-        var randomNum = Math.floor((Math.random() * (120-19) + 19));
-        $("#targetNum").text(" " + randomNum);
-       console.log(randomNum);
+        //create function to start game with random number and write it to the Target Num on the HTML doc
+        //randomly generate a new number for each crystal and assign it to "value"
+        //console log all the numbers so I don't go crazy testing it out!
+        function initializeGame(){
+            randomNum = Math.floor((Math.random() * (120-19) + 19));
+            $("#targetNum").text(" " + randomNum);
+            console.log(randomNum);
+            var blueCrystal = Math.floor((Math.random() * 12) +1);
+            $("#blueCrystal").attr("value", blueCrystal);
+            console.log(blueCrystal);
+            var greenCrystal = Math.floor((Math.random() * 12) +1);
+            $("#greenCrystal").attr("value", greenCrystal);
+            console.log(greenCrystal);
+            var pinkCrystal = Math.floor((Math.random() * 12) +1);
+            $("#pinkCrystal").attr("value", pinkCrystal);
+            console.log(pinkCrystal);
+            var purpleCrystal = Math.floor((Math.random() * 12) +1);
+            $("#purpleCrystal").attr("value", purpleCrystal);
+            console.log(purpleCrystal);
+            scoreTotal = 0;
+        };
+        //run the function
+        initializeGame();
 
-    }
-    //convert the values into numbers
-    //add the numbers
-    //write the numbers onto the HTML file
-    //reset the game
-     
-   var newTotal = $("#totalNumber").text("0");
+        //win Game function
+        function winGame() {
+            alert("YOU WIN!");
+            wins++;
+            $("#totalWins").text(wins);
+            initializeGame();
+        };
 
-    //If the blue crystal is clicked, take the value of that crystal
-    $("#blueCrystal").on("click", function() {
-       var blueValue = $(this).attr("value");
-       //turn the value into an integer
-       parseInt(blueValue);
-       console.log(blueValue);
+        //lose Game function
+        function loseGame() {
+            alert("YOU LOSE!");
+            losses++;
+            $("#totalLosses").text(losses);
+            initializeGame();
+        };
+
+
+        //If any crystal is clicked, take the value of that crystal
+        $(".imgButton").on("click", function() {
+            if (scoreTotal >= randomNum) {
+                return;
+            }
+            var crystalValue = $(this).attr("value");
+            //turn the value into an integer
+            crystalValue = parseInt(crystalValue);
+            //add the crystal's value to the score
+            scoreTotal += crystalValue;
+            //write the score onto the HTML
+            $("#totalNumber").text(scoreTotal);
+            if (scoreTotal > randomNum) {
+                loseGame();
+            } else if (scoreTotal === randomNum) {
+                winGame();
+            }
+        });
     });
-
-    $("#greenCrystal").on("click", function() {
-        var greenValue = $(this).attr("value");
-        parseInt(greenValue);
-        console.log(greenValue);
-    });
-    
-    $("#pinkCrystal").on("click", function() {
-        var pinkValue = $(this).attr("value");
-        parseInt(pinkValue);
-        console.log(pinkValue);
-    });
-
-    $("purpleCrystal").on("click", function() {
-        var purpleValue = $(this).attr("value");
-        parseInt(purpleValue);
-        console.log(purpleValue);
-    });
-    initializeGame();
-
-    //win condition (finish writing IF statements), Run the function
-    function winGame() {
-        alert("You Win!");
-        wins ++;
-        $("#totalWins").text(wins);
-    }
-    //lose condition (finish writing IF statements), Run the function
-    function LoseGame() {
-        alert("You Went Over! You Lose!");
-        losses ++;
-        $("#totalLosses").text(losses);
-    }
-
-    });
-    
-    
-    
-    
-    
-    
     
     </script>
 </body>
