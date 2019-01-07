@@ -7,6 +7,8 @@ $(document).ready(function() {
     var scoreTotal = 0;
     //create variables for each crystal (since they will randomly generate a new value)
     var blueCrystal = 0;
+    //play audio
+
 
     //create function to start game with random number and write it to the Target Num on the HTML doc
     //randomly generate a new number for each crystal and assign it to "value"
@@ -28,7 +30,8 @@ $(document).ready(function() {
         $("#purpleCrystal").attr("value", purpleCrystal);
         console.log(purpleCrystal);
         scoreTotal = 0;
-        $("#totalNumber").text(scoreTotal);
+        $("#totalNumber").text(" " + scoreTotal);
+        $(".my_audio").trigger('load');
     };
     //run the function
     initializeGame();
@@ -37,7 +40,7 @@ $(document).ready(function() {
     function winGame() {
         alert("YOU WIN!");
         wins++;
-        $("#totalWins").text(wins);
+        $("#totalWins").text(" " + wins);
         initializeGame();
     };
 
@@ -45,7 +48,7 @@ $(document).ready(function() {
     function loseGame() {
         alert("YOU LOSE!");
         losses++;
-        $("#totalLosses").text(losses);
+        $("#totalLosses").text(" " + losses);
         initializeGame();
     };
 
@@ -61,7 +64,7 @@ $(document).ready(function() {
         //add the crystal's value to the score
         scoreTotal += crystalValue;
         //write the score onto the HTML
-        $("#totalNumber").text(scoreTotal);
+        $("#totalNumber").text(" " + scoreTotal);
         if (scoreTotal > randomNum) {
             loseGame();
         } else if (scoreTotal === randomNum) {
